@@ -14,13 +14,14 @@ def connect(username, password, my_name, server_name, server_ip):
         print (e)
     return conn
 
-def upload(username, password, my_name, server_name, server_ip, path, filename, service_name):
+def upload(username, password, my_name, server_name, server_ip, myfilename, path, filename, service_name):
   conn = connect(username, password, my_name, server_name, server_ip)
   if conn:
-    print ('Upload = ' + path + filename)
-    print ('Size = %.1f kB' % (os.path.getsize(filename) / 1024.0))
+    print ('Upload = ' + myfilename + filename)
+    print ('Size = %.1f kB' % (os.path.getsize(myfilename+filename) / 1024.0))
     print ('start upload')
-    with open(filename, 'r') as file_obj:
+    #with open(pcFileName, 'r') as file_obj:
+    with open(myfilename+filename, 'rb') as file_obj:
       filesize = conn.storeFile(service_name, path+filename, file_obj)
     print ('upload finished')
     conn.close()
@@ -41,7 +42,7 @@ def getServiceName(username, password, my_name, server_name, server_ip):
 
             if s.type == 0:  # 0 = DISK_TREE
                 print('s.name : ', s.name)
-                return s.name
+                return 'wt2_down'
         conn.close()
 
 
@@ -56,8 +57,9 @@ server_name = 'wt2_down'
 #filename = 'raspi-guide.pdf'
 #filename = 'smb-example.py'
 #new_filename = 'smb-example2.py'
-path = '/file'
-filename = 'smb-test.txt'
+path = '/file/'
+myFileName = "D:/Git/workspace/dwnPPT/"
+filename = 'test.pptx'
 service_name = getServiceName(username, password, my_name, server_name, server_ip)
 
-#upload(username, password, my_name, server_name, server_ip, path, filename, service_name)
+upload(username, password, my_name, server_name, server_ip, myFileName, path, filename, service_name)
