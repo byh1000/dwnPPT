@@ -49,17 +49,7 @@ def getServiceName(username, password, my_name, server_name, server_ip):
     else:
         return ''
 
-username = 'ls_id'
-password = 'K*vkxldh00'
-my_name = 'wipsPC'
-server_ip = '172.20.20.109'
-server_name = 'wt2_down'
-#filename = 'raspi-guide.pdf'
-#filename = 'smb-example.py'
-#new_filename = 'smb-example2.py'
-path = '/file/'
-myFileName = "D:/Git/workspace/dwnPPT/"
-filename = 'test.pptx'
+
 service_name = getServiceName(username, password, my_name, server_name, server_ip)
 
 upload(username, password, my_name, server_name, server_ip, myFileName, path, filename, service_name)
